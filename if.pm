@@ -3,7 +3,7 @@ package if;
 $VERSION = '0.0608';
 
 sub work {
-  my $method = shift() ? 'import' : 'unimport';
+  my $method = shift();
   unless (@_ >= 2) {
     my $type = ($method eq 'import') ? 'use' : 'no';
     die "Too few arguments to '$type if' (some code returning an empty list in list context?)"
@@ -17,8 +17,8 @@ sub work {
   goto &$m if $m;
 }
 
-sub import   { shift; unshift @_, 1; goto &work }
-sub unimport { shift; unshift @_, 0; goto &work }
+sub import   { shift; unshift @_, 'import'; goto &work }
+sub unimport { shift; unshift @_, 'export'; goto &work }
 
 1;
 __END__
