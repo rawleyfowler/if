@@ -18,7 +18,7 @@ sub work {
 }
 
 sub import   { shift; unshift @_, 'import'; goto &work }
-sub unimport { shift; unshift @_, 'export'; goto &work }
+sub unimport { shift; unshift @_, 'unimport'; goto &work }
 
 1;
 __END__
